@@ -109,3 +109,5 @@ main() {
 	configure
 	setup_aliases
 }
+
+main
