@@ -5,35 +5,24 @@ preinstalls() {
 	pacman -Syu --noconfirm # Update system
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 	pacman -Syu --noconfirm libxcb # broot
-	pacman -S --noconfirm go
-	pacman -S --noconfirm nodejs
+	pacman -S --noconfirm go nodejs
+}
+
+configure_go() {
+	echo "Exporting go path..."
+	echo "export GOPATH=$HOME/DOcuments/Programming/go" >> ~/.zshrc
+	echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> ~/.zshrc
 }
 
 pacman_installs() {
 	echo "Installing tools using pacman..."
-	pacman -S --noconfirm bat
-	pacman -S --noconfirm exa
-	pacman -S --noconfirm git-delta
-	pacman -S --noconfirm duf
-	pacman -S --noconfirm fd
-	pacman -S --noconfirm ripgrep
-	pacman -S --noconfirm the_silver_searcher
-	pacman -S --noconfirm fzf
-	pacman -S --noconfirm jq
-	pacman -S --noconfirm bottom
-	pacman -S --noconfirm gping
-	pacman -S --noconfirm procs
-	pacman -S --noconfirm xh
-	pacman -S --noconfirm zoxide
-	pacman -S --noconfirm hyperfine
+	pacman -S --noconfirm bat exa git-delta duf fd ripgrep the_silver_searcher fzf jq bottom gping procs xh zoxide hyperfine
 }
 
 rust_installs() {
 	echo "Installing rust based tools..."
-	cargo install du-dust
+	cargo install du-dust choose sd
 	cargo install --locked broot
-	cargo install choose
-	cargo install sd
 }
 
 go_installs() {
@@ -49,6 +38,7 @@ npm_installs() {
 
 configure_delta() {
 	echo "Configuring delta..."
+
 	git_delta_config="[core]
 		pager = delta
 
@@ -98,11 +88,13 @@ setup_aliases() {
 	echo "alias ps=procs" >> ~/.zshrc
 	echo "alias curl=curlie" >> ~/.zshrc
 	echo "alias curl=curlie" >> ~/.zshrc
+	source ~/.zshrc
 }
 
 main() {
 	echo "Executing script..."
 	preinstalls
+	configure_go
 	pacman_installs
 	rust_installs
 	go_installs
