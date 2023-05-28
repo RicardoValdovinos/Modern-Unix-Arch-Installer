@@ -5,27 +5,27 @@ preinstalls() {
 	pacman -Syu --noconfirm # Update system
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Rust
 	pacman -Syu --noconfirm libxcb # broot
-	pacman -S go
-	pacman -S nodejs
+	pacman -s --noconfirm go
+	pacman -s --noconfirm nodejs
 }
 
 pacman_installs() {
 	echo "Installing tools using pacman..."
-	pacman -S bat
-	pacman -S exa
-	pacman -S git-delta
-	pacman -S duf
-	pacman -S fd
-	pacman -S ripgrep
-	pacman -S the_silver_searcher
-	pacman -S fzf
-	pacman -S jq
-	pacman -S bottom
-	pacman -S gping
-	pacman -S procs
-	pacman -S xh
-	pacman -S zoxide
-	pacman -S hyperfine
+	pacman -s --noconfirm bat
+	pacman -s --noconfirm exa
+	pacman -s --noconfirm git-delta
+	pacman -s --noconfirm duf
+	pacman -s --noconfirm fd
+	pacman -s --noconfirm ripgrep
+	pacman -s --noconfirm the_silver_searcher
+	pacman -s --noconfirm fzf
+	pacman -s --noconfirm jq
+	pacman -s --noconfirm bottom
+	pacman -s --noconfirm gping
+	pacman -s --noconfirm procs
+	pacman -s --noconfirm xh
+	pacman -s --noconfirm zoxide
+	pacman -s --noconfirm hyperfine
 }
 
 rust_installs() {
